@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login / Signup - OTP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #f0f2f5; font-family: Arial; }
+        .card { max-width: 400px; margin: 80px auto; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);}
+        .btn-primary { background: #6f42c1; border: none;}
+        .btn-primary:hover { background: #5936a2; }
+    </style>
+</head>
+<body>
+<div class="card">
+
+    <h3 class="text-center mb-4">OTP Authentication</h3>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Enter Email -->
+    {% if show_email %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Send OTP</button>
+    </form>
+    {% endif %}
+
+    <!-- Verify OTP -->
+    {% if show_otp %}
+    <p>OTP sent to <strong>{{ email }}</strong></p>
+    <form method="post" action="{% url 'verify_otp' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Enter OTP</label>
+            <input type="text" class="form-control" name="otp" placeholder="6-digit OTP" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Verify OTP</button>
+    </form>
+    {% endif %}
+
+</div>
+</body>
+</html>
