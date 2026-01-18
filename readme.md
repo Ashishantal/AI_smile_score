@@ -5,7 +5,7 @@ A **Django-based project** that allows users to upload a face image, predicts a 
 This project is meant as a **demo to showcase skills** in Python, Django, ML, and blockchain integration. No real money is used.
 
 ---
-
+![Demo GIF](PROJECT.gif)
 ## Features
 
 1. **Face Smile Score**
