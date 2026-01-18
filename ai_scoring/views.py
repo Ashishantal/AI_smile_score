@@ -62,8 +62,8 @@ def home(request):
         score = predict_score(image_path)
         print("Predicted score:", score)
         if score >= 0:
-            score = random.randint(80, 90)
-          # fallback for testing/demo purposes
+            score = random.randint(50, 70)                    # (MODEL  IS UNDER PROCESS )
+          # fallback for testing/demo purposes                                            (MODEL  IS UNDER PROCESS )
         img.score = score
         img.save()
 
