@@ -62,3 +62,4 @@ python manage.py migrate
 Run server
 
 python manage.py runserver
+![Alt text for the GIF]PROJECT.gif)
