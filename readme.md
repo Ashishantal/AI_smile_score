@@ -45,3 +45,20 @@ This project is meant as a **demo to showcase skills** in Python, Django, ML, an
 ```bash
 git clone <repo-url>
 cd project-folder
+
+ **Install dependencies**
+```bash
+pip install -r requirements.txt
+
+python -m venv env
+env\Scripts\activate   # Windows
+source env/bin/activate # Mac/Linux
+
+DJANGO_SECRET_KEY=your_django_secret_key
+GANACHE_URL=http://127.0.0.1:7545
+Migrate database
+
+python manage.py migrate
+Run server
+
+python manage.py runserver
