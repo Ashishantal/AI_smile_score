@@ -14,7 +14,7 @@ env/
 venv/
 ENV/
 .venv/
-
+.env
 # IDEs
 .vscode/
 .idea/
@@ -25,9 +25,7 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# ML / Model files
-#*.keras
-#*.h5
+
 
 
 # Static files
