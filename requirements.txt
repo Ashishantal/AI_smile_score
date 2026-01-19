@@ -1,7 +1,7 @@
 # Django
 Django==6.0
-guincorn==20.1.0
-whitenoise==6.5.0
+guincorn
+whitenoise
 opencv-python
 web3==6.0.0
 
