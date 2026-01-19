@@ -5,36 +5,32 @@ from django.conf import settings
 from .models import Wallet, RewardTransaction
 from decimal import Decimal
 from web3 import Web3
+DEMO_REWARD_ETH = Decimal("0.01")
 
-w3 = Web3(Web3.HTTPProvider(settings.GANACHE_URL))
 
 
 @login_required
 def wallet_page(request):
-    user = request.user
-    wallet = Wallet.objects.filter(user=user).first()
+    wallet = Wallet.objects.filter(user=request.user).first()
 
-    # Wallet NOT created yet
     if not wallet:
         return render(request, "wallet/wallet.html", {
             "wallet": None
         })
 
-    w3 = Web3(Web3.HTTPProvider(settings.GANACHE_URL))
+    transactions = RewardTransaction.objects.filter(
+        user=request.user
+    ).order_by("-created_at")
 
-    balance_wei = w3.eth.get_balance(wallet.address)
-    balance_eth = Decimal(w3.from_wei(balance_wei, 'ether'))
-
-    wallet.balance = balance_eth
-    wallet.save(update_fields=["balance"])
-
-    transactions = RewardTransaction.objects.filter(user=user).order_by("-created_at")
+    total_earned = transactions.count() * DEMO_REWARD_ETH
 
     return render(request, "wallet/wallet.html", {
         "wallet": wallet,
         "transactions": transactions,
-        "balance": balance_eth
+        "balance": wallet.balance or Decimal("0"),
+        "total_earned": total_earned
     })
+
 
 
 @login_required

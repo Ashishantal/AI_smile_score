@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+from decimal import Decimal
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -129,16 +130,19 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 #email backend
 import os
+from dotenv import load_dotenv
+load_dotenv()
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'do-not-reply  <noreply@yourapp.com>'
-EMAIL_HOST_USER = os.environ.get('email')        # your email
-EMAIL_HOST_PASSWORD = os.environ.get('password')
+EMAIL_HOST_USER = os.getenv('email')        # your email
+EMAIL_HOST_PASSWORD = os.getenv('password')
 
-GANACHE_URL = os.environ.get('GANACHE_URL', 'http://127.0.0.1:7545')
+GANACHE_URL = os.getenv('GANACHE_URL', 'http://127.0.0.1:7545')
 
-ADMIN_WALLET_ADDRESS = os.environ.get('ADMIN_WALLET_ADDRESS')
-ADMIN_PRIVATE_KEY = os.environ.get('ADMIN_PRIVATE_KEY')
+
+DEMO_MODE = os.getenv("DEMO_MODE", "False") == "True"
+DEMO_REWARD_ETH = Decimal(os.getenv("DEMO_REWARD_ETH", "0.01"))
 ENABLE_REAL_ETH_REWARD = False 

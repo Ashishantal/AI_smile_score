@@ -34,6 +34,22 @@
             cursor:pointer;
             font-size:16px;
         }
+        .info {
+            background:#020617;
+            padding:10px;
+            border-radius:10px;
+            margin-bottom:12px;
+            font-size:14px;
+        }
+        .gif-box {
+            margin-top:15px;
+            text-align:center;
+        }
+        .gif-box img {
+            width:100%;
+            border-radius:10px;
+            border:1px solid #334155;
+        }
     </style>
 </head>
 <body>
@@ -41,40 +57,56 @@
 <div class="card">
     <h2>💼 My Wallet</h2>
 
-    <div class="alert alert-warning">
-        ⚠️ <b>Demo Wallet</b> using Ganache test network.  
-        No real money involved.
+    <div class="info">
+        ⚠️ <b>Demo Wallet (Not Blockchain-based)</b><br>
+        This wallet uses a <b>simulated ETH reward system</b> stored in the database.<br>
+        No real cryptocurrency is transferred.
     </div>
+
+    <div class="info">
+        🎥 <b>Blockchain Demo Proof</b><br>
+        Below is a real blockchain transaction demo using Ganache,
+        implemented earlier for learning & validation.
+    </div>
+
+    <!-- demo gif section for later -->
+    <div class="gif-box">
+        <img src="/static/images/transaction.gif" alt="Ganache Demo">
+    </div>
+
+
+    <hr style="margin:15px 0; border-color:#334155;">
 
     {% if not wallet %}
         <!-- CREATE WALLET SECTION -->
-        <p>You don't have a wallet yet.</p>
+        <p>You don’t have a wallet yet.</p>
 
         <form method="post" action="{% url 'create_wallet' %}">
             {% csrf_token %}
-            <button type="submit">➕ Create Wallet</button>
+            <button type="submit">➕ Create Demo Wallet</button>
         </form>
 
     {% else %}
-        <!-- WALLET DETAILS SECTION -->
+        <!-- WALLET DETAILS -->
         <p>
-            <small>Wallet Address</small><br>
+            <small>Wallet Address (Demo)</small><br>
             {{ wallet.address }}
         </p>
 
         <div class="balance">
-            💰 {{ balance }} ETH
+            💰 {{ total_earned }} ETH
         </div>
 
-        <h3>📜 Transactions</h3>
+        <h3>📜 Reward History</h3>
 
         {% for tx in transactions %}
-            <div class="tx">
-                + {{ tx.score|floatformat:0 }} score<br>
-                <small>{{ tx.created_at }}</small>
-            </div>
-        {% empty %}
-            <p>No rewards yet</p>
+               <div class="tx">
+                          + 0.01 ETH <br>
+                  <small>Tx: {{ tx.tx_hash|slice:":12" }}...</small><br>
+              <small>{{ tx.created_at }}</small>
+                </div>
+           {% empty %}
+          <p>No rewards earned yet</p>
         {% endfor %}
     {% endif %}
 

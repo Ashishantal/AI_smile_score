@@ -7,6 +7,8 @@ from wallet.models import RewardTransaction, Wallet
 from django.contrib import messages
 from ai_scoring.model.model import predict_score
 from wallet.blockchain import send_fake_eth
+from decimal import Decimal
+
 
 
 def home(request):
@@ -76,19 +78,24 @@ def home(request):
           else:
              already_paid = RewardTransaction.objects.filter(
              user=request.user,
+             
                is_paid=True
                 ).exists()
 
              if not already_paid:
-                tx_hash = send_fake_eth(wallet.address)
+                tx_hash, eth_amount = send_fake_eth(wallet.address)
 
                 RewardTransaction.objects.create(
                 user=request.user,
+                
                 score=score,
                 wallet_address=wallet.address,
                 tx_hash=tx_hash,
+                
                 is_paid=True
                 )
+                wallet.balance += eth_amount
+                wallet.save(update_fields=["balance"])
 
                 messages.success(
                 request,

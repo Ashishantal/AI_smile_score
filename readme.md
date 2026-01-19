@@ -46,9 +46,9 @@ This project is meant as a **demo to showcase skills** in Python, Django, ML, an
 git clone <repo-url>
 cd project-folder
 
- **Install dependencies**
+2. **Install dependencies**
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt 
 
 python -m venv env
 env\Scripts\activate   # Windows
@@ -62,4 +62,3 @@ python manage.py migrate
 Run server
 
 python manage.py runserver
-![Alt text for the GIF]PROJECT.gif)
