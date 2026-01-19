@@ -1,28 +1,17 @@
-# Django
-Django==6.0
-guincorn
-whitenoise
-opencv-python
-web3==6.0.0
+# Core
+Django==5.0.2
+gunicorn==21.2.0
+whitenoise==6.6.0
+python-dotenv==1.0.1
 
-# Database (if using SQLite, it's built-in, else use psycopg2/boto3 if PostgreSQL/AWS)
-# psycopg2-binary==2.9.9 
+# AI / ML
+tensorflow-cpu==2.15.0
+numpy==1.26.4
+opencv-python-headless==4.9.0.80
+Pillow==10.2.0
 
-# ML / Deep Learning
-tensorflow==2.14.0
-keras==2.14.0
-numpy==1.26.0
-Pillow==10.0.0
+# Blockchain / Wallet
+web3==6.15.1
 
-# Blockchain
-web3==6.0.0
-
-# Misc
-django-environ==0.10.0  # Optional, for environment variables
-python-dotenv==1.0.0     # Optional, if using .env file
-
-# For sending emails in development
-django-anymail==9.3  
-
-# Random utilities
+# Utilities
 requests==2.31.0
