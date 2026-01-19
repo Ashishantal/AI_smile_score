@@ -1,5 +1,9 @@
 # Django
 Django==6.0
+guincorn==20.1.0
+whitenoise==6.5.0
+opencv-python
+web3==6.0.0
 
 # Database (if using SQLite, it's built-in, else use psycopg2/boto3 if PostgreSQL/AWS)
 # psycopg2-binary==2.9.9 
