@@ -6,6 +6,9 @@ import os
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "smile_cnn_model.keras")
 
 # IMPORTANT: do NOT load model here
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 model = None
 
 
